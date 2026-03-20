@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小猫跑酷 - 免费在线网页游戏</title>
+  <meta name="description" content="小猫跑酷是一款免费的在线网页跑酷游戏。躲开锯齿、跳过障碍、击败 Boss，直接在浏览器里开玩。">
+  <meta name="keywords" content="小猫跑酷, 跑酷游戏, 网页游戏, 在线游戏, 免费小游戏, 猫咪游戏">
+  <meta name="theme-color" content="#ffcf7d">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="小猫跑酷 - 免费在线网页游戏">
+  <meta property="og:description" content="直接在浏览器里玩的猫咪跑酷网页游戏，支持闯关、Boss 战和道具升级。">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="小猫跑酷 - 免费在线网页游戏">
+  <meta name="twitter:description" content="躲开锯齿、击败 Boss、收集金币，打开网页就能玩的小猫跑酷。">
+  <meta name="application-name" content="小猫跑酷">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell">
+    <section class="hud">
+      <div>
+        <p class="label">关卡</p>
+        <h1 id="levelName">1 / 5</h1>
+        <p class="label" id="themeName">沙漠</p>
+      </div>
+      <div>
+        <p class="label">金币</p>
+        <h1 id="score">0</h1>
+      </div>
+      <div class="tips">
+        <p>A / D 或左右方向键：移动</p>
+        <p>W / 空格 / 上方向键：跳跃，R：开枪，T：重开本关</p>
+        <p>弹簧会把你弹高，碎裂平台会掉下去</p>
+        <p>从上方踩到普通敌人可以直接击败它</p>
+        <p>Boss 关先捡枪，再用子弹打掉 Boss 血量</p>
+        <p>地面锯齿会左右移动，注意预判节奏</p>
+      </div>
+    </section>
+
+    <section class="game-area" id="gameArea" aria-label="小猫跑酷游戏区域">
+      <div class="sun"></div>
+      <div class="skyline"></div>
+      <section class="boss-hud hidden" id="bossHud" aria-live="polite">
+        <div class="boss-hud__label">
+          <span id="bossName">Boss</span>
+          <span id="bossHealthText">0 / 0</span>
+        </div>
+        <div class="boss-hud__bar">
+          <div class="boss-hud__fill" id="bossHealthFill"></div>
+        </div>
+      </section>
+      <div class="track"></div>
+      <div class="world" id="world">
+        <div class="player" id="player"></div>
+      </div>
+
+      <section class="overlay" id="overlay">
+        <h2>小猫跑酷</h2>
+        <p>跳过障碍、躲开锯齿、收集金币，在浏览器里完成一场轻快又有 Boss 战的猫咪跑酷。</p>
+        <button id="startButton" type="button" data-action="start">开始游戏</button>
+      </section>
+    </section>
+  </main>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "小猫跑酷",
+      "description": "一款可直接在浏览器中游玩的在线网页跑酷游戏，包含 Boss 战、金币收集和道具升级。",
+      "genre": ["Platformer", "Runner"],
+      "inLanguage": "zh-CN",
+      "operatingSystem": "Web Browser",
+      "applicationCategory": "Game"
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

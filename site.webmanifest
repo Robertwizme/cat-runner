@@ -1,0 +1,10 @@
+{
+  "name": "小猫跑酷",
+  "short_name": "小猫跑酷",
+  "description": "免费的在线网页跑酷游戏，支持闯关、Boss 战和道具升级。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fff3d2",
+  "theme_color": "#ffcf7d",
+  "lang": "zh-CN"
+}
