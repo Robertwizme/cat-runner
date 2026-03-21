@@ -32,6 +32,10 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -920,5 +924,73 @@ button:hover {
   .touch-btn {
     flex: 1;
     font-size: 15px;
+  }
+}
+
+@media (max-width: 960px) and (orientation: landscape) {
+  body {
+    display: block;
+    padding: 6px 8px 84px;
+    overflow: hidden;
+  }
+
+  .game-shell {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hud {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+
+  .tips {
+    display: none;
+  }
+
+  .label {
+    font-size: 11px;
+  }
+
+  #score,
+  #levelName {
+    font-size: clamp(20px, 3vw, 28px);
+  }
+
+  .game-area {
+    height: calc(100svh - 156px);
+    min-height: 280px;
+    border-radius: 18px;
+  }
+
+  .boss-hud {
+    width: min(60vw, 360px);
+    top: 6px;
+  }
+
+  .touch-controls {
+    display: grid;
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    z-index: 20;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 18px;
+    background: rgba(255, 252, 245, 0.9);
+    box-shadow: 0 12px 24px rgba(47, 36, 31, 0.14);
+  }
+
+  .touch-controls__row {
+    justify-content: space-between;
+  }
+
+  .touch-btn {
+    min-height: 46px;
+    padding: 10px 14px;
+    font-size: 14px;
   }
 }
