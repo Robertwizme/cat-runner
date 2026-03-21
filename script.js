@@ -736,9 +736,14 @@ function resetLevel() {
 }
 
 function updateCamera() {
-  const viewportWidth = gameArea.clientWidth;
-  const target = Math.max(0, Math.min(worldWidth - viewportWidth, playerState.x - viewportWidth * 0.35));
-  world.style.transform = `translateX(${-target}px)`;
+  const isMobileViewport = window.innerWidth <= 960;
+  const isLandscapeViewport = window.innerWidth > window.innerHeight;
+  const cameraScale = !isMobileViewport ? 1 : isLandscapeViewport ? 0.76 : 0.88;
+  const viewportWidth = gameArea.clientWidth / cameraScale;
+  const leadDistance = viewportWidth * (isMobileViewport ? 0.42 : 0.35);
+  const maxTarget = Math.max(0, worldWidth - viewportWidth);
+  const target = Math.max(0, Math.min(maxTarget, playerState.x - leadDistance));
+  world.style.transform = `translateX(${-target}px) scale(${cameraScale})`;
 }
 
 function renderPlayer() {
