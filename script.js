@@ -1573,9 +1573,68 @@ function handleKeyUp(event) {
   }
 }
 
+function handleTouchControlPress(control) {
+  if (control === "left") {
+    keys.left = true;
+    facingDirection = -1;
+    return;
+  }
+
+  if (control === "right") {
+    keys.right = true;
+    facingDirection = 1;
+    return;
+  }
+
+  if (control === "jump") {
+    jump();
+    return;
+  }
+
+  if (control === "shoot") {
+    shootBlaster();
+    return;
+  }
+
+  if (control === "restart") {
+    restartLevel();
+  }
+}
+
+function handleTouchControlRelease(control) {
+  if (control === "left") {
+    keys.left = false;
+  }
+
+  if (control === "right") {
+    keys.right = false;
+  }
+}
+
 document.addEventListener("keydown", handleKeyDown);
 document.addEventListener("keyup", handleKeyUp);
 window.addEventListener("resize", updateCamera);
+
+for (const button of document.querySelectorAll("[data-control]")) {
+  const control = button.dataset.control;
+
+  button.addEventListener("pointerdown", (event) => {
+    event.preventDefault();
+    handleTouchControlPress(control);
+  });
+
+  button.addEventListener("pointerup", () => {
+    handleTouchControlRelease(control);
+  });
+
+  button.addEventListener("pointercancel", () => {
+    handleTouchControlRelease(control);
+  });
+
+  button.addEventListener("pointerleave", () => {
+    handleTouchControlRelease(control);
+  });
+}
 
 overlay.addEventListener("click", (event) => {
   if (event.target.tagName !== "BUTTON") {
