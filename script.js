@@ -1617,22 +1617,36 @@ window.addEventListener("resize", updateCamera);
 
 for (const button of document.querySelectorAll("[data-control]")) {
   const control = button.dataset.control;
-
-  button.addEventListener("pointerdown", (event) => {
+  const press = (event) => {
     event.preventDefault();
     handleTouchControlPress(control);
-  });
-
-  button.addEventListener("pointerup", () => {
+  };
+  const release = (event) => {
+    if (event) {
+      event.preventDefault();
+    }
     handleTouchControlRelease(control);
-  });
+  };
 
-  button.addEventListener("pointercancel", () => {
-    handleTouchControlRelease(control);
-  });
+  button.addEventListener("pointerdown", press);
+  button.addEventListener("touchstart", press, { passive: false });
+  button.addEventListener("mousedown", press);
 
-  button.addEventListener("pointerleave", () => {
-    handleTouchControlRelease(control);
+  button.addEventListener("pointerup", release);
+  button.addEventListener("touchend", release, { passive: false });
+  button.addEventListener("mouseup", release);
+
+  button.addEventListener("pointercancel", release);
+  button.addEventListener("touchcancel", release, { passive: false });
+
+  button.addEventListener("pointerleave", release);
+  button.addEventListener("mouseleave", release);
+
+  button.addEventListener("click", (event) => {
+    if (control === "jump" || control === "shoot" || control === "restart") {
+      event.preventDefault();
+      handleTouchControlPress(control);
+    }
   });
 }
 
